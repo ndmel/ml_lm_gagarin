@@ -29,11 +29,10 @@ def score_texts(
     # all messages are shorter than 2048 characters
     """
 
-    vectorizer, clf_company, clf_sentiment = args
+    vectorizer_company, vectorizer_sentiment, clf_company, clf_sentiment = args
 
-    messages_vectors = vectorizer.transform(messages)
-    companies = [int(x) for x in clf_company.predict(messages_vectors)]
-    sentiments = [float(x) for x in clf_sentiment.predict(messages_vectors)]
+    companies = [int(x) for x in clf_company.predict(vectorizer_company.transform(messages))]
+    sentiments = [float(x) for x in clf_sentiment.predict(vectorizer_sentiment.transform(messages))]
     result = [[pair] for pair in zip(companies, sentiments)]
 
     return result
