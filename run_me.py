@@ -44,7 +44,9 @@ def save_data(data, path: pathlib.Path = PATH_TO_OUTPUT_DATA):
 def main():
     texts = load_data()
     vectorizer_company, vectorizer_sentiment, clf_company, clf_sentiment = load_artifacts()
-    scores = score_texts(texts, vectorizer_company, vectorizer_sentiment, clf_company, clf_sentiment)
+    scores = score_texts(
+        texts, vectorizer_company, vectorizer_sentiment, clf_company, clf_sentiment
+    )
     save_data(scores)
 
 

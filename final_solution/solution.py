@@ -31,8 +31,14 @@ def score_texts(
 
     vectorizer_company, vectorizer_sentiment, clf_company, clf_sentiment = args
 
-    companies = [int(x) for x in clf_company.predict(vectorizer_company.transform(messages))]
-    sentiments = [float(x) for x in clf_sentiment.predict(vectorizer_sentiment.transform(messages))]
+    companies = [
+        int(x)
+        for x in clf_company.predict(vectorizer_company.transform(messages))
+    ]
+    sentiments = [
+        float(x)
+        for x in clf_sentiment.predict(vectorizer_sentiment.transform(messages))
+    ]
     result = [[pair] for pair in zip(companies, sentiments)]
 
     return result
