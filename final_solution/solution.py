@@ -22,4 +22,12 @@ def score_texts(
     Clarifications:
     >>> assert all([len(m) < 10 ** 11 for m in messages]) # all messages are shorter than 2048 characters
     """
-    raise NotImplementedError
+    
+    vectorizer, clf_company, clf_sentiment = args
+    
+    messages_vectors = vectorizer.transform(messages)
+    companies = [int(x) for x in clf_company.predict(messages_vectors)]
+    sentiments = [float(x) for x in clf_sentiment.predict(messages_vectors)]
+    result = [[pair] for pair in zip(companies, sentiments)]
+    
+    return result
